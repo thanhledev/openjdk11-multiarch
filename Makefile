@@ -21,7 +21,7 @@ init: clean
 	@docker buildx inspect --bootstrap
 
 build:
-	@docker login -u $(DOCKER_USER) -p $(DOCKER_PASS)
+	@docker login -u $(DOCKER_USER) -p $(DOCKER_PASS) docker.io
 	@docker buildx build \
 			--build-arg BUILD_DATE=$(shell date -u +"%Y-%m-%dT%H:%M:%SZ") \
 			--build-arg VCS_REF=$(shell git rev-parse --short HEAD) \
