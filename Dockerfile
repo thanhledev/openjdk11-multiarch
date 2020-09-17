@@ -12,7 +12,10 @@ RUN apt-get update \
 ENV JAVA_VERSION jdk11u
 
 ARG TARGETPLATFORM
-ARG BUILDPLATFORM
+ARG VERSION=master
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VCS_URL
 
 RUN set -eux; \
     ARCH=$(echo "${TARGETPLATFORM}" | sed -e "s|.*amd64|amd64|g" -e "s|.*arm64/v8|arm64|g" -e "s|.*arm/v7|armhf|g" -e "s|.*ppc64le|ppc64le|g" -e "s|.*386|386|g"); \
@@ -49,6 +52,14 @@ RUN set -eux; \
     cd /opt/java/openjdk; \
     tar -xf /tmp/openjdk.tar.gz --strip-components=1; \
     rm -rf /tmp/openjdk.tar.gz;
+
+LABEL de.thanhledev.openjdk11.version=$VERSION \
+    de.thanhledev.openjdk11.name="Ubuntu:18.04 OpenJDK11" \    
+    de.thanhledev.openjdk11.vendor="Thanh Le" \
+    de.thanhledev.openjdk11.architecture=$TARGETPLATFORM \
+    de.thanhledev.openjdk11.vcs-ref=$VCS_REF \
+    de.thanhledev.openjdk11.vcs-url=$VCS_URL \
+    de.thanhledev.openjdk11.build-date=$BUILD_DATE
 
 ENV JAVA_HOME=/opt/java/openjdk \
     PATH="/opt/java/openjdk/bin:$PATH"

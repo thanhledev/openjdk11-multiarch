@@ -29,7 +29,7 @@ build:
 			--build-arg VERSION=$(VERSION) \
 			--platform $(PLATFORMS) \
 			--push \
-			-t thanhledev/$(REPO):$(TAG) .
+			-t $(DOCKER_USER)/$(REPO):$(TAG) .
 	@docker logout
 
 clean:
