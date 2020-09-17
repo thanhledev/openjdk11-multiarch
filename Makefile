@@ -29,7 +29,7 @@ build:
 			--build-arg VERSION=$(VERSION) \
 			--platform $(PLATFORMS) \
 			--push \
-			-t $(REPO):$(TAG) .
+			-t thanhledev/ubuntu-openjdk11-multiarch:latest .
 	@docker logout
 
 clean:
