@@ -18,7 +18,7 @@ ARG VCS_REF
 ARG VCS_URL
 
 RUN set -eux; \
-    ARCH=$(echo "${TARGETPLATFORM}" | sed -e "s|.*amd64|amd64|g" -e "s|.*arm64/v8|arm64|g" -e "s|.*arm/v7|armhf|g" -e "s|.*ppc64le|ppc64le|g" -e "s|.*s390x|s390x|g"); \
+    ARCH=$(echo "${TARGETPLATFORM}" | sed -e "s|.*amd64|amd64|g" -e "s|.*arm64/v8|arm64|g" -e "s|.*arm64|arm64|g" -e "s|.*arm/v7|armhf|g" -e "s|.*ppc64le|ppc64le|g" -e "s|.*s390x|s390x|g"); \
     case "${ARCH}" in \
        aarch64|arm64) \
          ESUM='f36d7eaf1ad9f49ae255719d864b5b56d300cc57e280f65a6f42ef4ba929daf1'; \
