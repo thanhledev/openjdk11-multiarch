@@ -1,8 +1,8 @@
-PLATFORMS = linux/amd64,linux/arm64,linux/arm/v7
+PLATFORMS = linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x
 VERSION = $(shell cat VERSION)
 BINFMT = a7996909642ee92942dcd6cff44b9b95f08dad64
 ifeq ($(REPO),)
-  REPO = ubuntu-openjdk11-multiarch
+  REPO = openjdk11-multiarch
 endif
 ifeq ($(CIRCLE_TAG),)
 	TAG = latest
@@ -29,7 +29,7 @@ build:
 			--build-arg VERSION=$(VERSION) \
 			--platform $(PLATFORMS) \
 			--push \
-			-t thanhledev/ubuntu-openjdk11-multiarch:latest .
+			-t thanhledev/$(REPO):$(TAG) .
 	@docker logout
 
 clean:
